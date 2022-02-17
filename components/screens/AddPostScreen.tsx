@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-// import { ReactDOM } from "react";
 import { View, Text, StyleSheet, TextInput } from "react-native";
 import { Navigation } from "react-native-navigation";
 import { useNavigationButtonPress, useNavigation, withNavigationProvider } from "react-native-navigation-hooks";
@@ -63,14 +62,16 @@ const AddPostScreen = withNavigationProvider((props: any) => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>AddPost Screen</Text>
+      <Text style={styles.title}>AddPost Screen</Text>
       <TextInput
         placeholder="Add a Catchy Title"
+        style={styles.titleInput}
         value={title}
         onChangeText={onChangeTitle}
       />
       <TextInput
         placeholder="This is the beginning of a great post"
+        style={styles.textInput}
         value={text}
         onChangeText={onChangeText}
       />
@@ -81,6 +82,24 @@ const AddPostScreen = withNavigationProvider((props: any) => {
 export default AddPostScreen;
 
 const styles = StyleSheet.create({
-  container: {},
-  text: {},
+  container: {
+    flex : 1,
+    backgroundColor : 'orange',
+    alignItems : "center",
+    // alignContent : "center",
+    justifyContent : "center",
+  },
+  title : {
+    fontSize : 50
+  },
+  titleInput : {
+    fontSize : 22
+  },
+  textInput : {
+    alignContent : "flex-start",
+    // justifyContent : "flex-start"
+  },
+  text: {
+
+  },
 });
