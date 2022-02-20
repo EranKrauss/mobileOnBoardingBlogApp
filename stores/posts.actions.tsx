@@ -16,21 +16,14 @@ export async function addPost(post: Post) {
     },
     body: JSON.stringify(post),
   });
-  const postToAdd = await response.json();
+  const postToAdd = await response.json() as Post;
   // @ts-ignore
   postsStore.addPost(postToAdd);
 }
 
-export async function removePost(post : Post){
-  const response = await fetch('http://localhost:3000/posts', {
-    method: 'REMOVE',
-    headers: {
-      Accept: 'application/json',
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(post),
+export async function removePost(postId : string){
+  const response = await fetch(`http://localhost:3000/posts/${postId}`, {
+    method: 'DELETE',
   });
-  const postToDelete = await response.json();
-  // @ts-ignore
-  postsStore.removePost(postToDelete);
+
 }

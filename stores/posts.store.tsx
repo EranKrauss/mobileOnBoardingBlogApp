@@ -30,8 +30,8 @@ const setters = rmx.setters({
     postsState.posts = [...postsState.posts, post];
   },
 
-  removePost(post : Post){
-    postsState.posts = postsState.posts.filter(curr => curr.id !== post.id);
+  delete(postId : string){
+    postsState.posts = postsState.posts.filter(curr => curr.id !== postId);
   }
 });
 

@@ -32,6 +32,7 @@ const AddPostScreen = withNavigationProvider((props: any) => {
     navi.dismissModal(props.componentId);
     const randomImageNumber = Math.floor((Math.random() * 500) + 1);
     postsActions.addPost({
+      id : "",
       title : title,
       text : text,
       img: `https://picsum.photos/200/200/?image=${randomImageNumber.toString()}`

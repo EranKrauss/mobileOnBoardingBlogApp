@@ -34,13 +34,6 @@ const PostListScreen = withNavigationProvider((props: any) => {
                             name: 'blog.AddPost',
                             passProps: {
                                 text: 'stack with one child'
-                            },
-                            options: {
-                                topBar: {
-                                    title: {
-                                        text: 'Modal'
-                                    }
-                                }
                             }
                         }
                     }]
@@ -49,24 +42,7 @@ const PostListScreen = withNavigationProvider((props: any) => {
         },
         {buttonId: 'addPost'}
     )
-    const pushViewPostScreen = () => {
-        Navigation.push(props.componentId, {
-            component: {
-                name: 'blog.ViewPost',
-                passProps: {
-                    first: 1,
-                    sec: 2
-                },
-                options: {
-                    topBar: {
-                        title: {
-                            text: 'Post1'
-                        }
-                    }
-                }
-            }
-        });
-    }
+
 
     // @ts-ignore
     const renderPost = (post: object) => <PostCard post={post}/>
@@ -80,7 +56,7 @@ const PostListScreen = withNavigationProvider((props: any) => {
     return (
 
         <View style={styles.container}>
-             <Text style={styles.title} onPress={pushViewPostScreen}>
+             <Text style={styles.title}>
                  Post's List
              </Text>
              <ScrollView style={styles.posts}>
@@ -114,7 +90,6 @@ const styles = StyleSheet.create({
         paddingTop : 20,
     },
     posts: {
-
         // flex: 9
     },
 });

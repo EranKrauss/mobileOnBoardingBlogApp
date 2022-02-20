@@ -2,20 +2,35 @@ import React from "react";
 import {View, Text, StyleSheet, Button} from "react-native";
 import {useNavigation, withNavigationProvider} from "react-native-navigation-hooks";
 import {Post} from "../../types";
+import {removePost} from "../../stores/posts.actions";
 
 export type ViewPostScreenPropsType = {
     post: Post
 }
 const ViewPostScreen = withNavigationProvider((props: ViewPostScreenPropsType) => {
     const navi = useNavigation();
+
+    const navigateToPostListScreen = () => {
+        navi.push({
+            component : {
+                name : "blog.PostsList"
+            }
+        })
+    }
     const deletePressHandler = () => {
-        navi.pop();
+        removePost(props.post.id)
+            .then(res => {
+                console.log("Post deleted");
+                navigateToPostListScreen()
+            })
+            .catch(err => {
+                console.error("ViewPostScreen  >  >  deletePressHandler  >  error details: " + err.message);
+                navi.pop();
+            })
     }
     return (
         <View style={styles.container}>
-            {/*<View >*/}
                 <Text style={styles.text}>{props.post.text}</Text>
-            {/*</View>*/}
             <View style={styles.button}>
                 <Button title='delete' onPress={deletePressHandler}/>
             </View>
