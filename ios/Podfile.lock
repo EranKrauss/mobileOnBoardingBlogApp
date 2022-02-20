@@ -349,6 +349,8 @@ PODS:
     - React-Core
     - React-RCTImage
     - React-RCTText
+  - ReactNativeUiLib (3.0.5):
+    - React
   - Yoga (1.14.0)
   - YogaKit (1.18.1):
     - Yoga (~> 1.14)
@@ -408,6 +410,7 @@ DEPENDENCIES:
   - React-runtimeexecutor (from `../node_modules/react-native/ReactCommon/runtimeexecutor`)
   - ReactCommon/turbomodule/core (from `../node_modules/react-native/ReactCommon`)
   - ReactNativeNavigation (from `../node_modules/react-native-navigation`)
+  - ReactNativeUiLib (from `../node_modules/react-native-ui-lib/lib`)
   - Yoga (from `../node_modules/react-native/ReactCommon/yoga`)
 
 SPEC REPOS:
@@ -489,6 +492,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon"
   ReactNativeNavigation:
     :path: "../node_modules/react-native-navigation"
+  ReactNativeUiLib:
+    :path: "../node_modules/react-native-ui-lib/lib"
   Yoga:
     :path: "../node_modules/react-native/ReactCommon/yoga"
 
@@ -537,6 +542,7 @@ SPEC CHECKSUMS:
   React-runtimeexecutor: 2450b43df7ffe8e805a0b3dcb2abd4282f1f1836
   ReactCommon: d98c6c96b567f9b3a15f9fd4cc302c1eda8e3cf2
   ReactNativeNavigation: 146bec8f834564f05637b43f469b9ca6e1cbe94f
+  ReactNativeUiLib: f9863dfca08046633eeb65ec34000461c5904e1a
   Yoga: 9b6696970c3289e8dea34b3eda93f23e61fb8121
   YogaKit: f782866e155069a2cca2517aafea43200b01fd5a
 
