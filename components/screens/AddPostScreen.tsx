@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from "react";
-import {View, Text, StyleSheet, TextInput} from "react-native";
+import {View, Text} from 'react-native-ui-lib';
+import { StyleSheet, TextInput} from "react-native";
 import {Navigation} from "react-native-navigation";
 import {useNavigationButtonPress, useNavigation, withNavigationProvider} from "react-native-navigation-hooks";
 import * as postsActions from '../../stores/posts.actions'

@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from "react";
-import {View, Text, StyleSheet, Button} from "react-native";
+import {StyleSheet, Button} from "react-native";
+import {View, Text} from 'react-native-ui-lib';
 import {useNavigation, useNavigationButtonPress, withNavigationProvider} from "react-native-navigation-hooks";
 import {Post} from "../../types";
 import {removePost} from "../../stores/posts.actions";

@@ -1,5 +1,6 @@
 import React, {useEffect} from "react";
-import {View, Text, StyleSheet, ScrollView} from "react-native";
+import {  StyleSheet, ScrollView} from "react-native";
+import {View, Text} from 'react-native-ui-lib';
 import {Navigation} from "react-native-navigation";
 import {useNavigationButtonPress, withNavigationProvider} from "react-native-navigation-hooks";
 import * as postsActions from '../../stores/posts.actions';

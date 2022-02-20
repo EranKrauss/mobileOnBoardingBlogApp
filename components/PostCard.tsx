@@ -1,5 +1,6 @@
 import React from "react";
-import {Alert, Image, Pressable, StyleSheet, Text, View} from "react-native";
+import {Pressable, StyleSheet} from "react-native";
+import {View, Text} from 'react-native-ui-lib';
 import {useNavigation} from "react-native-navigation-hooks";
 import {Post} from "../types";
 
