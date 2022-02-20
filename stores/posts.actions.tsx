@@ -2,28 +2,42 @@ import {postsStore} from './posts.store';
 import {Post} from "../types";
 
 export async function fetchPosts() {
-  const response = await fetch('http://localhost:3000/posts');
-  const posts = await response.json();
-  postsStore.setPosts(posts);
+    const response = await fetch('http://localhost:3000/posts');
+    const posts = await response.json();
+    postsStore.setPosts(posts);
 }
 
 export async function addPost(post: Post) {
-  const response = await fetch('http://localhost:3000/posts', {
-    method: 'POST',
-    headers: {
-      Accept: 'application/json',
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(post),
-  });
-  const postToAdd = await response.json() as Post;
-  // @ts-ignore
-  postsStore.addPost(postToAdd);
+    const response = await fetch('http://localhost:3000/posts', {
+        method: 'POST',
+        headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(post),
+    });
+    const postToAdd = await response.json() as Post;
+    // @ts-ignore
+    postsStore.addPost(postToAdd);
 }
 
-export async function removePost(postId : string){
-  const response = await fetch(`http://localhost:3000/posts/${postId}`, {
-    method: 'DELETE',
-  });
+export async function removePost(postId: string) {
+    const response = await fetch(`http://localhost:3000/posts/${postId}`, {
+        method: 'DELETE',
+    });
 
+}
+
+export async function editPost(post: Post) {
+    console.log("post", post)
+    const response = await fetch(`http://localhost:3000/posts/${post.id}`, {
+        method: 'PUT',
+        headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(post),
+    });
+    const postToUpdate = await response.json() as Post;
+    postsStore.addPost(postToUpdate);
 }

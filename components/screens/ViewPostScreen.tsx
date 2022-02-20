@@ -1,14 +1,59 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import {View, Text, StyleSheet, Button} from "react-native";
-import {useNavigation, withNavigationProvider} from "react-native-navigation-hooks";
+import {useNavigation, useNavigationButtonPress, withNavigationProvider} from "react-native-navigation-hooks";
 import {Post} from "../../types";
 import {removePost} from "../../stores/posts.actions";
+import {Navigation} from "react-native-navigation";
 
 export type ViewPostScreenPropsType = {
     post: Post
 }
 const ViewPostScreen = withNavigationProvider((props: ViewPostScreenPropsType) => {
     const navi = useNavigation();
+    const [post, setPost] = useState(props.post);
+
+    const setPostDeep = (post : Post) => {
+        const newPost = {
+            id : post.id,
+            title : post.title,
+            text : post.text,
+            img : post.text
+        }
+        setPost(newPost);
+    }
+
+
+    useEffect(() => {
+        navi.mergeOptions({
+            topBar : {
+                title : {
+                    text : post.title
+                },
+                rightButtons : [
+                    {
+                        id : 'editBtn',
+                        text : 'edit',
+                    }
+                ]
+            }
+        })
+    }, [post])
+
+    useNavigationButtonPress(() => {
+        Navigation.showModal({
+            stack: {
+                children: [{
+                    component: {
+                        name: 'blog.AddPost',
+                        passProps: {
+                            post : post,
+                            setPost : setPostDeep
+                        }
+                    }
+                }]
+            }
+        })
+    }, {buttonId : 'editBtn'})
 
     const navigateToPostListScreen = () => {
         navi.push({
@@ -18,9 +63,8 @@ const ViewPostScreen = withNavigationProvider((props: ViewPostScreenPropsType) =
         })
     }
     const deletePressHandler = () => {
-        removePost(props.post.id)
-            .then(res => {
-                console.log("Post deleted");
+        removePost(post.id)
+            .then(() => {
                 navigateToPostListScreen()
             })
             .catch(err => {
@@ -30,7 +74,7 @@ const ViewPostScreen = withNavigationProvider((props: ViewPostScreenPropsType) =
     }
     return (
         <View style={styles.container}>
-                <Text style={styles.text}>{props.post.text}</Text>
+                <Text style={styles.text}>{post.text}</Text>
             <View style={styles.button}>
                 <Button title='delete' onPress={deletePressHandler}/>
             </View>

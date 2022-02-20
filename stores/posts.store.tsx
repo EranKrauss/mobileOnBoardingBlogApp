@@ -32,6 +32,15 @@ const setters = rmx.setters({
 
   delete(postId : string){
     postsState.posts = postsState.posts.filter(curr => curr.id !== postId);
+  },
+
+  editPost(post : Post){
+    postsState.posts = postsState.posts.map(item => {
+      if(item.id === post.id){
+        return post;
+      }
+      return item;
+    })
   }
 });
 
