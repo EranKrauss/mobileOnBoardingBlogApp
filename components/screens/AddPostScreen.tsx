@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
-import {View, Text} from 'react-native-ui-lib';
-import { StyleSheet, TextInput} from "react-native";
+import {View, Text, TextField} from 'react-native-ui-lib';
+import {StyleSheet, TextInput} from "react-native";
 import {Navigation} from "react-native-navigation";
 import {useNavigationButtonPress, useNavigation, withNavigationProvider} from "react-native-navigation-hooks";
 import * as postsActions from '../../stores/posts.actions'
@@ -82,20 +82,27 @@ const AddPostScreen = withNavigationProvider((props: AddPostScreenPropsType) => 
 
 
     return (
-        <View style={styles.container}>
-            <Text style={styles.title}>{props.post ? "Edit Post" : "Add Post"}</Text>
-            <TextInput
-                placeholder="Add a Catchy Title"
-                style={styles.titleInput}
-                value={title}
-                onChangeText={onChangeTitle}
-            />
-            <TextInput
-                placeholder="This is the beginning of a great post"
-                style={styles.textInput}
-                value={text}
-                onChangeText={onChangeText}
-            />
+        <View
+            flex  padding-24
+        >
+                <Text text40 purple10 marginB-12>{props.post ? "Edit Post" : "Add Post"}</Text>
+                <TextField
+                    text70
+                    containerStyle={{marginBottom: 12}}
+                    floatingPlaceholder
+                    placeholder="Add a Catchy Title"
+                    onChangeText={onChangeTitle}
+                    floatOnFocus
+                    value={title}
+                />
+                <TextField
+                    text70
+                    floatingPlaceholder
+                    placeholder="This is the beginning of a great post"
+                    onChangeText={onChangeText}
+                    expandable
+                    value={text}
+                />
         </View>
     );
 });
@@ -103,22 +110,5 @@ const AddPostScreen = withNavigationProvider((props: AddPostScreenPropsType) => 
 export default AddPostScreen;
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: 'orange',
-        alignItems: "center",
-        // alignContent : "center",
-        justifyContent: "center",
-    },
-    title: {
-        fontSize: 50
-    },
-    titleInput: {
-        fontSize: 22
-    },
-    textInput: {
-        alignContent: "flex-start",
-        // justifyContent : "flex-start"
-    },
-    text: {},
+
 });

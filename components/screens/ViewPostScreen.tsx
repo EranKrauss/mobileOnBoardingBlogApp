@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from "react";
-import {StyleSheet, Button} from "react-native";
-import {View, Text} from 'react-native-ui-lib';
+import {Image, StyleSheet} from "react-native";
+import {View, Text, Colors, Typography, Button, BorderRadiuses} from 'react-native-ui-lib';
+
 import {useNavigation, useNavigationButtonPress, withNavigationProvider} from "react-native-navigation-hooks";
 import {Post} from "../../types";
 import {removePost} from "../../stores/posts.actions";
@@ -13,12 +14,12 @@ const ViewPostScreen = withNavigationProvider((props: ViewPostScreenPropsType) =
     const navi = useNavigation();
     const [post, setPost] = useState(props.post);
 
-    const setPostDeep = (post : Post) => {
+    const setPostDeep = (post: Post) => {
         const newPost = {
-            id : post.id,
-            title : post.title,
-            text : post.text,
-            img : post.text
+            id: post.id,
+            title: post.title,
+            text: post.text,
+            img: post.text
         }
         setPost(newPost);
     }
@@ -26,14 +27,14 @@ const ViewPostScreen = withNavigationProvider((props: ViewPostScreenPropsType) =
 
     useEffect(() => {
         navi.mergeOptions({
-            topBar : {
-                title : {
-                    text : post.title
+            topBar: {
+                title: {
+                    text: "My Post"
                 },
-                rightButtons : [
+                rightButtons: [
                     {
-                        id : 'editBtn',
-                        text : 'edit',
+                        id: 'editBtn',
+                        text: 'edit',
                     }
                 ]
             }
@@ -47,19 +48,19 @@ const ViewPostScreen = withNavigationProvider((props: ViewPostScreenPropsType) =
                     component: {
                         name: 'blog.AddPost',
                         passProps: {
-                            post : post,
-                            setPost : setPostDeep
+                            post: post,
+                            setPost: setPostDeep
                         }
                     }
                 }]
             }
         })
-    }, {buttonId : 'editBtn'})
+    }, {buttonId: 'editBtn'})
 
     const navigateToPostListScreen = () => {
         navi.push({
-            component : {
-                name : "blog.PostsList"
+            component: {
+                name: "blog.PostsList"
             }
         })
     }
@@ -74,30 +75,53 @@ const ViewPostScreen = withNavigationProvider((props: ViewPostScreenPropsType) =
             })
     }
     return (
-        <View style={styles.container}>
-                <Text style={styles.text}>{post.text}</Text>
-            <View style={styles.button}>
-                <Button title='delete' onPress={deletePressHandler}/>
+        <View flex spread padding-24>
+            <View>
+                <View row spread>
+                    <Text text40 purple10 marginB-12 testID="post-title">{post.title}</Text>
+                    <Image
+                        source={{uri: post.img}}
+                        style={styles.image}
+                    />
+                </View>
+                <Text text65 dark20 marginT-22  testID="post-content" style={{lineHeight : 0}}>{post.text}</Text>
             </View>
+            <Button
+                label="Delete Post"
+                fullWidth
+                text80
+                red20
+                bg-red70
+                marginT-5
+                borderRadius={30}
+
+                onPress={deletePressHandler}
+            />
         </View>
-    );
+    )
+        ;
 })
 
 export default ViewPostScreen;
 
-const styles = StyleSheet.create({
-    container: {
-        flex : 1
+const styles = {
+    title: {
+        ...Typography.text40,
+        color: Colors.purple10,
+        textAlign: 'center',
+        marginTop: 23,
     },
-    text : {
-        flex : 9,
-        alignItems : "center",
-        textAlign : 'center',
-        fontSize : 40,
-        paddingTop : 20
+    text: {
+        ...Typography.text60,
+        color: Colors.black10,
+        // textAlign: 'center',
+        marginTop: 5,
     },
-    button : {
-        flex : 1
-
+    image: {
+        width: 54,
+        height: 54,
+        borderRadius: BorderRadiuses.br20,
+        marginHorizontal: 14,
     }
-});
+
+}

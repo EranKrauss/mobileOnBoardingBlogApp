@@ -1,6 +1,6 @@
 import React, {useEffect} from "react";
-import {  StyleSheet, ScrollView} from "react-native";
-import {View, Text} from 'react-native-ui-lib';
+import {StyleSheet, ScrollView, FlatList, Image} from "react-native";
+import {View, Text, ListItem, Colors, BorderRadiuses} from 'react-native-ui-lib';
 import {Navigation} from "react-native-navigation";
 import {useNavigationButtonPress, withNavigationProvider} from "react-native-navigation-hooks";
 import * as postsActions from '../../stores/posts.actions';
@@ -46,26 +46,27 @@ const PostListScreen = withNavigationProvider((props: any) => {
 
 
     // @ts-ignore
-    const renderPost = (post: object) => <PostCard post={post}/>
+    // const renderPost = (item: object) => <PostCard post={item}/>
+    const renderPost = (post: Post) => <PostCard post={post}/>   ;
     // @ts-ignore
     const postKeyExtractor = (item: object) => `${item.id}-key`;
-    const createPostsList = (posts : object[]) => {
+    const createPostsList = (posts: object[]) => {
         // @ts-ignore
         return posts.map(post => <PostCard post={post} key={post.id}/>)
     }
     // @ts-ignore
     return (
 
-        <View style={styles.container}>
-             <Text style={styles.title}>
-                 Post's List
-             </Text>
-             <ScrollView style={styles.posts}>
-            {props.posts.length > 0 && createPostsList(props.posts)}
-                  {/*<FlatList data={props.posts} renderItem={renderPost} keyExtractor={postKeyExtractor}/>*/}
-             </ScrollView>
-         </View>
-     );
+        <View flex spread padding-24>
+            <Text
+                text40 purple10 marginB-12 center
+            >
+                Post's List
+            </Text>
+            {props.posts.length > 0 &&
+            <FlatList testID="posts-list" data={props.posts} renderItem={({item}) => renderPost(item)} keyExtractor={postKeyExtractor}/>}
+        </View>
+    );
 })
 
 const mapStateToProps = () => {
@@ -88,9 +89,19 @@ const styles = StyleSheet.create({
         textAlign: "center",
         fontSize: 28,
         margin: 10,
-        paddingTop : 20,
+        paddingTop: 20,
     },
     posts: {
         // flex: 9
+    },
+    border: {
+        borderBottomWidth: StyleSheet.hairlineWidth,
+        borderColor: Colors.dark60,
+    },
+    image: {
+        width: 54,
+        height: 54,
+        borderRadius: BorderRadiuses.br20,
+        marginHorizontal: 14,
     },
 });

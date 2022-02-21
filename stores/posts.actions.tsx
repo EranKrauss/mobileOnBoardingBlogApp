@@ -29,7 +29,6 @@ export async function removePost(postId: string) {
 }
 
 export async function editPost(post: Post) {
-    console.log("post", post)
     const response = await fetch(`http://localhost:3000/posts/${post.id}`, {
         method: 'PUT',
         headers: {
@@ -39,5 +38,5 @@ export async function editPost(post: Post) {
         body: JSON.stringify(post),
     });
     const postToUpdate = await response.json() as Post;
-    postsStore.addPost(postToUpdate);
+    postsStore.editPost(postToUpdate);
 }
