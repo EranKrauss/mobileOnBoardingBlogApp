@@ -1,7 +1,7 @@
-import {postsStore} from './posts.store';
 import {Post} from "../types";
 import serverApi from "../serverApi";
 
+const postsStore = require('../stores/posts.store');
 export async function fetchPosts() {
     const posts = await serverApi.fetchPosts();
     postsStore.setPosts(posts);

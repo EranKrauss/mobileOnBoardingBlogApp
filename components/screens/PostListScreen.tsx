@@ -4,9 +4,11 @@ import {View, Text, ListItem, Colors, BorderRadiuses} from 'react-native-ui-lib'
 import {Navigation} from "react-native-navigation";
 import {useNavigationButtonPress, withNavigationProvider} from "react-native-navigation-hooks";
 import * as postsActions from '../../stores/posts.actions';
-import {postsStore} from "../../stores/posts.store";
+// import {postsStore} from "../../stores/posts.store";
 import {connect} from 'remx';
 import PostCard from "../PostCard";
+const postsStore = require('../../stores/posts.store');
+
 
 
 const PostListScreen = withNavigationProvider((props: any) => {

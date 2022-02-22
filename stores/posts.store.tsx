@@ -44,8 +44,10 @@ const setters = rmx.setters({
   }
 });
 
-export const postsStore = {
+const postsStore = {
   ...getters,
   ...setters
 }
+
+module.exports = postsStore;
 
