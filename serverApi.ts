@@ -1,5 +1,4 @@
 import {Post} from "./types";
-import {postsStore} from "./stores/posts.store";
 
 const addPost = async (post :Post) => {
     const response = await fetch('http://localhost:3000/posts', {

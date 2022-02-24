@@ -14,9 +14,19 @@ export async function addPost(post: Post) {
 
 export async function removePost(postId: string) {
     await serverApi.removePost(postId);
+    postsStore.delete(postId);
 }
 
 export async function editPost(post: Post) {
     const postToUpdate = await serverApi.editPost(post);
     postsStore.editPost(postToUpdate);
 }
+
+export default  {
+    fetchPosts,
+    addPost,
+    removePost,
+    editPost
+}
+
+// module.exports = postStoreAction;

@@ -3,11 +3,11 @@ import {StyleSheet, ScrollView, FlatList, Image} from "react-native";
 import {View, Text, ListItem, Colors, BorderRadiuses} from 'react-native-ui-lib';
 import {Navigation} from "react-native-navigation";
 import {useNavigationButtonPress, withNavigationProvider} from "react-native-navigation-hooks";
-import * as postsActions from '../../stores/posts.actions';
+import * as postsActions from '../../../stores/posts.actions';
 // import {postsStore} from "../../stores/posts.store";
 import {connect} from 'remx';
-import PostCard from "../PostCard";
-const postsStore = require('../../stores/posts.store');
+import PostCard from "../../PostCard";
+const postsStore = require('../../../stores/posts.store');
 
 
 

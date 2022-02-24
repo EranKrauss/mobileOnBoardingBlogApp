@@ -3,8 +3,8 @@ import {Image, StyleSheet} from "react-native";
 import {View, Text, Colors, Typography, Button, BorderRadiuses} from 'react-native-ui-lib';
 
 import {useNavigation, useNavigationButtonPress, withNavigationProvider} from "react-native-navigation-hooks";
-import {Post} from "../../types";
-import {removePost} from "../../stores/posts.actions";
+import {Post} from "../../../types";
+import {removePost} from "../../../stores/posts.actions";
 import {Navigation} from "react-native-navigation";
 
 export type ViewPostScreenPropsType = {
